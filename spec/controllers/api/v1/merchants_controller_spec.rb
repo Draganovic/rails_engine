@@ -7,5 +7,7 @@ RSpec.describe Api::V1::MerchantsController, type: :controller do
     get :index, format: :json
 
     merchants = JSON.parse(response.body)
+
+    expect(Merchant.first.name).to eq "Beth"
   end
 end
