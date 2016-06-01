@@ -23,4 +23,5 @@ RSpec.describe Api::V1::InvoiceItemsController, type: :controller do
     expect(invoice_items.count).to eq 3
     expect(invoice_items.first["quantity"]).to eq 2
   end
+
 end
