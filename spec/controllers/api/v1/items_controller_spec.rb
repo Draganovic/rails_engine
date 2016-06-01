@@ -15,4 +15,32 @@ RSpec.describe Api::V1::ItemsController, type: :controller do
     expect(items.count).to eq 3
     expect(items.first["name"]).to eq "Soap"
   end
+
+  it "can view one item" do
+    merchant1 = Merchant.create(name: "Beth")
+    merchant2 = Merchant.create(name: "Frank")
+    item1 = Item.create(name: "Soap", description: "Smells and works like soap", unit_price: 10.25, merchant_id: merchant1.id )
+    item2 = Item.create(name: "Towel", description: "Good for drying things", unit_price: 20.50, merchant_id: merchant1.id )
+
+    id = Item.last.id
+
+    get "show", id: id, format: :json
+
+    item = JSON.parse(response.body)
+
+    expect(response).to be_success
+    expect(item["id"]).to eq id
+  end
+
+  it "can create a new item" do
+    item_params = { name: "Screwdriver", description: "It's mostly used for poking holes", unit_price: 22.22}
+
+    post "create", item: item_params, format: :json
+
+    expect(response).to be_success
+
+    new_item = Item.last
+
+    expect(new_item.name).to eq "Screwdriver"
+  end
 end
