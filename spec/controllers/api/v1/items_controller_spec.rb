@@ -43,4 +43,23 @@ RSpec.describe Api::V1::ItemsController, type: :controller do
 
     expect(new_item.name).to eq "Screwdriver"
   end
+
+  it "can update an item" do
+    merchant1 = Merchant.create(name: "Beth")
+    merchant2 = Merchant.create(name: "Frank")
+    item1 = Item.create(name: "Soap", description: "Smells and works like soap", unit_price: 10.25, merchant_id: merchant1.id )
+    item2 = Item.create(name: "Towel", description: "Good for drying things", unit_price: 20.50, merchant_id: merchant1.id )
+
+    id = Item.first.id
+    previous_name = Item.first.name
+    item_params = { name: "NEW NAME"}
+
+    put :update, id: id, item: item_params, format: :json
+    item = Item.find_by(id: id)
+
+    expect(response).to be_success
+    expect(previous_name).to_not eq item.name
+    expect("NEW NAME").to eq item.name
+  end
+
 end
