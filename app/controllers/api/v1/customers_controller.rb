@@ -5,4 +5,8 @@ class Api::V1::CustomersController < ApplicationController
     @customer = Customer.all
     respond_with :api, :v1, @customer
   end
+
+  def show
+    respond_with Customer.find_by(id: params[:id])
+  end
 end
