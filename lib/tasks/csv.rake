@@ -4,7 +4,7 @@ namespace :csv do
   desc "load csv files to db"
   task load_to_db: :environment do
     CSV.foreach("data/customers.csv", headers: true) do |row|
-      Customer.create(
+      Customer.create!(
         :first_name => row["first_name"],
         :last_name => row["last_name"],
         :created_at => row["created_at"],
