@@ -5,6 +5,4 @@ class Api::V1::MerchantsController < ApplicationController
     @merchant = Merchant.all
     respond_with :api, :v1, @merchant
   end
-
-
 end
