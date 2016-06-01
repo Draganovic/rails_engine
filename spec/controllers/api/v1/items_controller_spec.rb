@@ -12,7 +12,7 @@ RSpec.describe Api::V1::ItemsController, type: :controller do
 
     items = JSON.parse(response.body)
 
-    expect(Item.all.count).to eq 3
-    expect(Item.first.name).to eq "Soap"
+    expect(items.count).to eq 3
+    expect(items.first["name"]).to eq "Soap"
   end
 end
