@@ -62,4 +62,20 @@ RSpec.describe Api::V1::ItemsController, type: :controller do
     expect("NEW NAME").to eq item.name
   end
 
+  it "can destroy an item" do
+    merchant1 = Merchant.create(name: "Beth")
+    merchant2 = Merchant.create(name: "Frank")
+    item1 = Item.create(name: "Soap", description: "Smells and works like soap", unit_price: 10.25, merchant_id: merchant1.id )
+    item2 = Item.create(name: "Towel", description: "Good for drying things", unit_price: 20.50, merchant_id: merchant1.id )
+
+    item = Item.last
+
+    delete :destroy, id: item.id, format: :json
+
+    expect(response).to be_success
+    expect(Item.last.name).to eq "Soap"
+    expect(Item.first.name).to eq "Soap"
+    expect(Item.all.count).to eq 1
+  end
+
 end
