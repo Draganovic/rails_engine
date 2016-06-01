@@ -7,8 +7,8 @@ RSpec.describe Api::V1::CustomersController, type: :controller do
 
     get :index, format: :json
 
-    merchants = JSON.parse(response.body)
+    customers = JSON.parse(response.body)
 
-    expect(Customer.first.first_name).to eq "Bob"
+    expect(customers.first["first_name"]).to eq "Bob"
   end
 end
