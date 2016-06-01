@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::TransactionsController, type: :controller do
-  it "should get all the transactions" do
+  def setup
     customer1 = Customer.create(first_name: "Bob", last_name: "Dillan")
     customer2= Customer.create(first_name: "Tom", last_name: "Tompson")
     merchant1 = Merchant.create(name: "Beth")
@@ -16,12 +16,27 @@ RSpec.describe Api::V1::TransactionsController, type: :controller do
     invoice_item3 = InvoiceItem.create(item_id: item3.id, invoice_id: invoice2.id, quantity: 2, unit_price: 30.00)
     transaction1 = Transaction.create(credit_card_number: "4654405418249632", result: "success", invoice_id: invoice1.id)
     transaction2 = Transaction.create(credit_card_number: "4654405418249444", result: "success", invoice_id: invoice2.id)
-
+  end
+  it "should get all the transactions" do
+    setup
     get :index, format: :json
 
     transactions = JSON.parse(response.body)
 
     expect(response).to be_success
     expect(transactions.count).to eq 2
+  end
+
+  it "can view one transaction" do
+    setup
+
+    id = Transaction.last.id
+
+    get "show", id: id, format: :json
+
+    transaction = JSON.parse(response.body)
+
+    expect(response).to be_success
+    expect(transaction["id"]).to eq id
   end
 end
