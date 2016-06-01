@@ -19,6 +19,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'launchy'
 end
+gem 'simplecov', :require => false, :group => :test
+
 
 group :development do
   gem 'web-console', '~> 2.0'
