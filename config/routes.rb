@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       get "/invoices/:id/invoice_items", to: "invoices/invoice_items#index"
       get "/invoices/:id/items", to: "invoices/items#index"
       get "/invoices/:id/customer", to: "invoices/customers#show"
-      
+      get "/invoices/:id/merchant", to: "invoices/merchants#show"
 
       get "/invoice_items/find", to: "invoice_items/finders#show"
       get "/invoice_items/find", to: "invoice_items/finders#index"
