@@ -11,22 +11,27 @@ Rails.application.routes.draw do
 
       get "/customers/find", to: "customers/finders#show"
       get "/customers/find", to: "customers/finders#index"
+      get "/customers/random", to: "customers/random#show"
 
       get "/invoices/find", to: "invoices/finders#show"
       get "/invoices/find", to: "invoices/finders#index"
+      get "/invoices/random", to: "invoices/random#show"
 
       get "/invoice_items/find", to: "invoice_items/finders#show"
       get "/invoice_items/find", to: "invoice_items/finders#index"
+      get "/invoice_items/random", to: "invoice_items/random#show"
 
       get "/items/find", to: "items/finders#show"
       get "/items/find", to: "items/finders#index"
+      get "/items/random", to: "items/random#show"
 
       get "/merchants/find", to: "merchants/finders#show"
       get "/merchants/find", to: "merchants/finders#index"
+      get "/merchants/random", to: "merchants/random#show"
 
       get "/transactions/find", to: "transactions/finders#show"
       get "/transactions/find", to: "transactions/finders#index"
-
+      get "/transactions/random", to: "transactions/random#show"
 
     end
   end
