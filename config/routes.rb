@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     namespace :v1, defaults: { format: :json } do
 
       get "/customers/find", to: "customers/finders#show"
-      get "/customers/finda_all", to: "customers/finders#index"
+      get "/customers/find_all", to: "customers/finders#index"
       get "/customers/random", to: "customers/random#show"
       get "/customers/:id/invoices", to: "customers/invoices#index"
       get "/customers/:id/transactions", to: "customers/transactions#index"
@@ -24,6 +24,8 @@ Rails.application.routes.draw do
       get "/invoice_items/find_all", to: "invoice_items/finders#index"
       get "/invoice_items/random", to: "invoice_items/random#show"
       resources :invoice_items, only: [:index, :show]
+      get "/invoice_items/:id/invoice", to: "invoice_items/invoices#show"
+      get "/invoice_items/:id/item", to: "invoice_items/items#show"
 
       get "/items/find", to: "items/finders#show"
       get "/items/find_all", to: "items/finders#index"

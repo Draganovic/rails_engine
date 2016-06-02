@@ -21,12 +21,11 @@ RSpec.describe Api::V1::InvoiceItems::FindersController, type: :controller do
       expect(response.status).to eq(200)
       invoice_item =  JSON.parse(response.body)
 
-      expect(invoice_item['quantity']).to eq 2
+      expect(2).to eq(invoice_item['quantity'])
 
       get :show, quantity: invoice_item2.quantity, format: :json
       invoice_itme2 =  JSON.parse(response.body)
-
-      expect(2).to eq(invoice_itme2['id'])
+      expect(5).to eq(invoice_itme2['id'])
     end
   end
 
@@ -41,9 +40,9 @@ RSpec.describe Api::V1::InvoiceItems::FindersController, type: :controller do
       item3 = Item.create(name: "Shovel", description: "Digs holes", unit_price: 30.00, merchant_id: merchant2.id )
       invoice1 = Invoice.create(status: "shipped", customer_id: customer1.id, merchant_id: merchant1.id)
       invoice2 = Invoice.create(status: "shipped", customer_id: customer2.id, merchant_id: merchant2.id)
-      invoice_item1 = InvoiceItem.create(item_id: item1.id, invoice_id: invoice1.id, quantity: 2, unit_price: 10.25)
-      invoice_item2 = InvoiceItem.create(item_id: item2.id, invoice_id: invoice2.id, quantity: 3, unit_price: 20.50)
-      invoice_item3 = InvoiceItem.create(item_id: item3.id, invoice_id: invoice2.id, quantity: 2, unit_price: 30.01)
+      invoice_item1 = InvoiceItem.create(item_id: item1.id, invoice_id: invoice1.id, quantity: 2, unit_price: 1025)
+      invoice_item2 = InvoiceItem.create(item_id: item2.id, invoice_id: invoice2.id, quantity: 3, unit_price: 2050)
+      invoice_item3 = InvoiceItem.create(item_id: item3.id, invoice_id: invoice2.id, quantity: 2, unit_price: 3001)
 
       get :index, id: invoice_item3.id, format: :json
       expect(response.status).to eq(200)
@@ -57,7 +56,7 @@ RSpec.describe Api::V1::InvoiceItems::FindersController, type: :controller do
 
       first_item = invoice_items.first
       last_item = invoice_items.last
-      
+
       expect(response.status).to eq(200)
       expect(invoice_item1.id).to eq(first_item['id'])
       expect(invoice_item3.id).to eq(last_item['id'])
