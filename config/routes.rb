@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       get "/items/find", to: "items/finders#index"
       get "/items/random", to: "items/random#show"
       get "/items/:id/invoice_items", to: "items/invoice_items#index"
+      get "/items/:id/merchant", to: "items/merchants#show"
 
       get "/merchants/find", to: "merchants/finders#show"
       get "/merchants/find", to: "merchants/finders#index"
