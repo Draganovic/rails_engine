@@ -17,6 +17,17 @@ Rails.application.routes.draw do
 
       get "/invoice_items/find", to: "invoice_items/finders#show"
       get "/invoice_items/find", to: "invoice_items/finders#index"
+
+      get "/items/find", to: "items/finders#show"
+      get "/items/find", to: "items/finders#index"
+
+      get "/merchants/find", to: "merchants/finders#show"
+      get "/merchants/find", to: "merchants/finders#index"
+
+      get "/transactions/find", to: "transactions/finders#show"
+      get "/transactions/find", to: "transactions/finders#index"
+
+
     end
   end
 end
