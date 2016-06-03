@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get "/customers/random", to: "customers/random#show"
       get "/customers/:id/invoices", to: "customers/invoices#index"
       get "/customers/:id/transactions", to: "customers/transactions#index"
+      get "/customers/:id/favorite_merchant", to: "customers/favorite_merchant#show"
       resources :customers, only: [:index, :show]
 
       get "/invoices/find", to: "invoices/finders#show"
@@ -32,6 +33,8 @@ Rails.application.routes.draw do
       get "/items/random", to: "items/random#show"
       get "/items/:id/invoice_items", to: "items/invoice_items#index"
       get "/items/:id/merchant", to: "items/merchants#show"
+      get "/items/most_revenue", to: "items/most_revenue#index"
+      get "/items/:id/best_day", to: "items/highest_sales_date#show"
       resources :items, only: [:index, :show, :create, :update, :destroy]
 
       get "/merchants/find", to: "merchants/finders#show"
