@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       get "/merchants/random", to: "merchants/random#show"
       get "/merchants/:id/items", to: "merchants/items#index"
       get "/merchants/:id/invoices", to: "merchants/invoices#index"
+      get "merchants/:id/customers_with_pending_invoices", to: "merchants/pending_invoices#index"
       resources :merchants, only: [:index, :show]
 
       # name conflict -> /find for bot hshow and index
