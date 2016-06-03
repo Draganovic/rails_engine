@@ -2,7 +2,12 @@ class Api::V1::Items::FindersController < ApplicationController
   respond_to :json
 
   def show
+    if item_params[:created_at] || item_params[:updated_at]
+      item = Item.where(item_params)
+      respond_with item.first
+    else
     respond_with Item.find_by(item_params)
+    end
   end
 
   def index
