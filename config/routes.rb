@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get "/customers/random", to: "customers/random#show"
       get "/customers/:id/invoices", to: "customers/invoices#index"
       get "/customers/:id/transactions", to: "customers/transactions#index"
+      get "/customers/:id/favorite_merchant", to: "customers/favorite_merchant#show"
       resources :customers, only: [:index, :show]
 
       get "/invoices/find", to: "invoices/finders#show"
@@ -32,6 +33,9 @@ Rails.application.routes.draw do
       get "/items/random", to: "items/random#show"
       get "/items/:id/invoice_items", to: "items/invoice_items#index"
       get "/items/:id/merchant", to: "items/merchants#show"
+      get "/items/:id/best_day", to: "items/highest_sales_date#show"
+      get "/items/most_revenue", to: "items/most_revenue#index"
+      get "/items/most_items", to: "items/most_items#index"
       resources :items, only: [:index, :show, :create, :update, :destroy]
 
       get "/merchants/find", to: "merchants/finders#show"
@@ -39,9 +43,10 @@ Rails.application.routes.draw do
       get "/merchants/random", to: "merchants/random#show"
       get "/merchants/:id/items", to: "merchants/items#index"
       get "/merchants/:id/invoices", to: "merchants/invoices#index"
+      get "merchants/:id/customers_with_pending_invoices", to: "merchants/pending_invoices#index"
+      get "merchants/:id/favorite_customer", to: "merchants/favorite_customer#show"
       resources :merchants, only: [:index, :show]
 
-      # name conflict -> /find for bot hshow and index
       get "/transactions/find", to: "transactions/finders#show"
       get "/transactions/find_all", to: "transactions/finders#index"
       get "/transactions/random", to: "transactions/random#show"

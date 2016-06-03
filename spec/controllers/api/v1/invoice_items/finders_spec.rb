@@ -28,7 +28,7 @@ RSpec.describe Api::V1::InvoiceItems::FindersController, type: :controller do
 
       invoice_itme2 =  JSON.parse(response.body, :quirks_mode => true)
 
-      expect(invoice_itme2['id']).to eq 5
+      expect(invoice_itme2['id']).to eq 8
     end
   end
 
