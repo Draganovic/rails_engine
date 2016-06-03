@@ -8,7 +8,7 @@ class Api::V1::Merchants::FavoriteCustomerController < ApplicationController
                            group(:customer_id).count
 
     merchant_id = frequencies.max_by { |k,v| v }.first
-
+  
     respond_with Customer.find(merchant_id)
   end
 

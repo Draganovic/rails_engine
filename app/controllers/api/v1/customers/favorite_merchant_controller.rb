@@ -5,7 +5,7 @@ class Api::V1::Customers::FavoriteMerchantController < ApplicationController
     frequencies = Customer.find(params[:id]).
                            invoices.joins(:transactions).
                            where(transactions: { result: "success"}).
-                           group(:customer_id).count
+                           group(:merchant_id).count
 
     customer_id = frequencies.max_by { |k,v| v }.first
 
